@@ -1,4 +1,4 @@
-import './App.css'
+import './core/css/App.css'
 import CaseOpeningView from './features/Case/views/CaseOpeningView'
 
 function App() {
