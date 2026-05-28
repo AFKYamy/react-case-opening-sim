@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+:root {
+    --color-bg: #141527;
+    --color-surface: #1c1e35;
+    --color-text: #fff;
+    --color-muted: #7e84a8;
+    --color-primary: #7f00ff;
+    --color-primary-dark: #6606c4;
+
+    --rarity-milspec: #516AF2;
+    --rarity-restricted: #7F50F6;
+    --rarity-classified: #C142DE;
+    --rarity-covert: #D85752;
+    --rarity-gold: #eecd15;
+}
