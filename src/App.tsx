@@ -4,7 +4,9 @@ import CaseOpeningView from './features/Case/views/CaseOpeningView'
 function App() {
 
     return (
-        <CaseOpeningView />
+        <main className="min-h-screen bg-bg text-text">
+            <CaseOpeningView />
+        </main>
     )
 }
 
