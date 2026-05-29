@@ -1,4 +1,21 @@
-export const caseBravo = [
+import type { CaseSkin } from "@/features/Case/types/case";
+import ak47FireSerpentImage from "@/core/assets/cases/operation-bravo-case/ak-47-fire-serpent.png";
+import awpGraphiteImage from "@/core/assets/cases/operation-bravo-case/awp-graphite.png";
+import desertEagleGoldenKoiImage from "@/core/assets/cases/operation-bravo-case/desert-eagle-golden-koi.png";
+import dualBerettasBlackLimbaImage from "@/core/assets/cases/operation-bravo-case/dual-berettas-black-limba.png";
+import g3sg1DemeterImage from "@/core/assets/cases/operation-bravo-case/g3sg1-demeter.png";
+import galilArShatteredImage from "@/core/assets/cases/operation-bravo-case/galil-ar-shattered.png";
+import m4a1sBrightWaterImage from "@/core/assets/cases/operation-bravo-case/m4a1-s-bright-water.png";
+import m4a4ZirkaImage from "@/core/assets/cases/operation-bravo-case/m4a4-zirka.png";
+import mac10GravenImage from "@/core/assets/cases/operation-bravo-case/mac-10-graven.png";
+import novaTempestImage from "@/core/assets/cases/operation-bravo-case/nova-tempest.png";
+import p2000OceanFoamImage from "@/core/assets/cases/operation-bravo-case/p2000-ocean-foam.png";
+import p90EmeraldDragonImage from "@/core/assets/cases/operation-bravo-case/p90-emerald-dragon.png";
+import sg553WaveSprayImage from "@/core/assets/cases/operation-bravo-case/sg-553-wave-spray.png";
+import ump45BonePileImage from "@/core/assets/cases/operation-bravo-case/ump-45-bone-pile.png";
+import uspsOvergrowthImage from "@/core/assets/cases/operation-bravo-case/usp-s-overgrowth.png";
+
+export const caseBravo: CaseSkin[] = [
     {
         id: "nova-tempest",
         skin: "Tempest",
@@ -15,7 +32,7 @@ export const caseBravo = [
             fieldTested: 12.15,
             factoryNew: 19.5,
         },
-        image: "",
+        image: novaTempestImage,
     },
     {
         id: "ak-47-fire-serpent",
@@ -33,7 +50,7 @@ export const caseBravo = [
             fieldTested: 1536.39,
             factoryNew: 2447.28,
         },
-        image: "",
+        image: ak47FireSerpentImage,
     },
     {
         id: "p90-emerald-dragon",
@@ -51,7 +68,7 @@ export const caseBravo = [
             fieldTested: 268.54,
             factoryNew: 422.93,
         },
-        image: "",
+        image: p90EmeraldDragonImage,
     },
     {
         id: "desert-eagle-golden-koi",
@@ -69,7 +86,7 @@ export const caseBravo = [
             fieldTested: 277.71,
             factoryNew: 317.54,
         },
-        image: "",
+        image: desertEagleGoldenKoiImage,
     },
     {
         id: "awp-graphite",
@@ -87,7 +104,7 @@ export const caseBravo = [
             fieldTested: 182.7,
             factoryNew: 189.55,
         },
-        image: "",
+        image: awpGraphiteImage,
     },
     {
         id: "p2000-ocean-foam",
@@ -105,7 +122,7 @@ export const caseBravo = [
             fieldTested: 143.75,
             factoryNew: 147.59,
         },
-        image: "",
+        image: p2000OceanFoamImage,
     },
     {
         id: "m4a4-zirka",
@@ -123,7 +140,7 @@ export const caseBravo = [
             fieldTested: 67.39,
             factoryNew: 110.45,
         },
-        image: "",
+        image: m4a4ZirkaImage,
     },
     {
         id: "mac-10-graven",
@@ -141,7 +158,7 @@ export const caseBravo = [
             fieldTested: 62.11,
             factoryNew: 107.49,
         },
-        image: "",
+        image: mac10GravenImage,
     },
     {
         id: "usp-s-overgrowth",
@@ -159,7 +176,7 @@ export const caseBravo = [
             fieldTested: 62.03,
             factoryNew: 101.76,
         },
-        image: "",
+        image: uspsOvergrowthImage,
     },
     {
         id: "m4a1-s-bright-water",
@@ -177,7 +194,7 @@ export const caseBravo = [
             fieldTested: 45.43,
             factoryNew: 50.17,
         },
-        image: "",
+        image: m4a1sBrightWaterImage,
     },
     {
         id: "galil-ar-shattered",
@@ -195,7 +212,7 @@ export const caseBravo = [
             fieldTested: 27.09,
             factoryNew: 48.12,
         },
-        image: "",
+        image: galilArShatteredImage,
     },
     {
         id: "dual-berettas-black-limba",
@@ -213,7 +230,7 @@ export const caseBravo = [
             fieldTested: 22.16,
             factoryNew: 38.65,
         },
-        image: "",
+        image: dualBerettasBlackLimbaImage,
     },
     {
         id: "g3sg1-demeter",
@@ -231,7 +248,7 @@ export const caseBravo = [
             fieldTested: 17.57,
             factoryNew: 29.71,
         },
-        image: "",
+        image: g3sg1DemeterImage,
     },
     {
         id: "sg-553-wave-spray",
@@ -249,7 +266,7 @@ export const caseBravo = [
             fieldTested: 17.37,
             factoryNew: 29.05,
         },
-        image: "",
+        image: sg553WaveSprayImage,
     },
     {
         id: "ump-45-bone-pile",
@@ -267,6 +284,6 @@ export const caseBravo = [
             fieldTested: 16.73,
             factoryNew: 26.92,
         },
-        image: "",
+        image: ump45BonePileImage,
     }
 ];
