@@ -1,5 +1,5 @@
-import { caseBravo } from "./operation-bravo-case";
+import { operationBravoCase } from "./operation-bravo-case";
 
 export {
-    caseBravo
+    operationBravoCase
 }

@@ -1,4 +1,5 @@
-import type { CaseSkin } from "@/features/Case/types/case";
+import type { Case, CaseSkin } from "@/features/Case/types/case";
+import { classicKnives } from "@/data/knives/classic-knives";
 import ak47FireSerpentImage from "@/core/assets/cases/operation-bravo-case/ak-47-fire-serpent.png";
 import awpGraphiteImage from "@/core/assets/cases/operation-bravo-case/awp-graphite.png";
 import desertEagleGoldenKoiImage from "@/core/assets/cases/operation-bravo-case/desert-eagle-golden-koi.png";
@@ -15,15 +16,18 @@ import sg553WaveSprayImage from "@/core/assets/cases/operation-bravo-case/sg-553
 import ump45BonePileImage from "@/core/assets/cases/operation-bravo-case/ump-45-bone-pile.png";
 import uspsOvergrowthImage from "@/core/assets/cases/operation-bravo-case/usp-s-overgrowth.png";
 
-export const caseBravo: CaseSkin[] = [
+const operationBravoSkinSources = [
+    "The Bravo Collection",
+    "Operation Bravo Case",
+];
+
+const operationBravoSkins: CaseSkin[] = [
     {
         id: "nova-tempest",
         skin: "Tempest",
         weapon: "Nova",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 4.8,
@@ -38,10 +42,8 @@ export const caseBravo: CaseSkin[] = [
         id: "ak-47-fire-serpent",
         skin: "Fire Serpent",
         weapon: "AK-47",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Covert",
         prices: {
             battleScarred: 625.49,
@@ -56,10 +58,8 @@ export const caseBravo: CaseSkin[] = [
         id: "p90-emerald-dragon",
         skin: "Emerald Dragon",
         weapon: "P90",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Classified",
         prices: {
             battleScarred: 114.15,
@@ -74,10 +74,8 @@ export const caseBravo: CaseSkin[] = [
         id: "desert-eagle-golden-koi",
         skin: "Golden Koi",
         weapon: "Desert Eagle",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Covert",
         prices: {
             battleScarred: 237.88,
@@ -92,10 +90,8 @@ export const caseBravo: CaseSkin[] = [
         id: "awp-graphite",
         skin: "Graphite",
         weapon: "AWP",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Classified",
         prices: {
             battleScarred: 175.84,
@@ -110,10 +106,8 @@ export const caseBravo: CaseSkin[] = [
         id: "p2000-ocean-foam",
         skin: "Ocean Foam",
         weapon: "P2000",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Classified",
         prices: {
             battleScarred: 139.9,
@@ -128,10 +122,8 @@ export const caseBravo: CaseSkin[] = [
         id: "m4a4-zirka",
         skin: "Zirka",
         weapon: "M4A4",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Restricted",
         prices: {
             battleScarred: 24.33,
@@ -146,10 +138,8 @@ export const caseBravo: CaseSkin[] = [
         id: "mac-10-graven",
         skin: "Graven",
         weapon: "MAC-10",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Restricted",
         prices: {
             battleScarred: 16.73,
@@ -164,10 +154,8 @@ export const caseBravo: CaseSkin[] = [
         id: "usp-s-overgrowth",
         skin: "Overgrowth",
         weapon: "USP-S",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Restricted",
         prices: {
             battleScarred: 22.29,
@@ -182,10 +170,8 @@ export const caseBravo: CaseSkin[] = [
         id: "m4a1-s-bright-water",
         skin: "Bright Water",
         weapon: "M4A1-S",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Restricted",
         prices: {
             battleScarred: 40.69,
@@ -200,10 +186,8 @@ export const caseBravo: CaseSkin[] = [
         id: "galil-ar-shattered",
         skin: "Shattered",
         weapon: "Galil AR",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 6.05,
@@ -218,10 +202,8 @@ export const caseBravo: CaseSkin[] = [
         id: "dual-berettas-black-limba",
         skin: "Black Limba",
         weapon: "Dual Berettas",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 5.67,
@@ -236,10 +218,8 @@ export const caseBravo: CaseSkin[] = [
         id: "g3sg1-demeter",
         skin: "Demeter",
         weapon: "G3SG1",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 5.42,
@@ -254,10 +234,8 @@ export const caseBravo: CaseSkin[] = [
         id: "sg-553-wave-spray",
         skin: "Wave Spray",
         weapon: "SG 553",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 5.69,
@@ -272,10 +250,8 @@ export const caseBravo: CaseSkin[] = [
         id: "ump-45-bone-pile",
         skin: "Bone Pile",
         weapon: "UMP-45",
-        sources: [
-            "The Bravo Collection",
-            "Operation Bravo Case"
-        ],
+        category: "skin",
+        sources: operationBravoSkinSources,
         rarity: "Mil-Spec",
         prices: {
             battleScarred: 6.54,
@@ -287,3 +263,11 @@ export const caseBravo: CaseSkin[] = [
         image: ump45BonePileImage,
     }
 ];
+
+export const operationBravoCase: Case = {
+    id: "operation-bravo-case",
+    name: "Operation Bravo Case",
+    collection: "The Bravo Collection",
+    skins: operationBravoSkins,
+    knives: classicKnives,
+};

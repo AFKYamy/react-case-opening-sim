@@ -15,8 +15,8 @@ export default function CaseOpeningView() {
         <div className="container flex flex-col gap-20 mx-auto px-4 py-10">
             {/* Case Name / Info */}
             <section className="text-center font-bold">
-                <h1 className="text-3xl">Operation Bravo Case</h1>
-                <p>The Bravo Collection</p>
+                <h1 className="text-3xl">{selectedCase.name}</h1>
+                <p>{selectedCase.collection}</p>
             </section>
 
             {/* Opening section */}
@@ -41,7 +41,7 @@ export default function CaseOpeningView() {
             </section>
 
             {/* Case Contents */}
-            <CaseContent skins={selectedCase} />
+            <CaseContent skins={selectedCase.skins} />
 
             {/* Drop Odds */}
             <section>

@@ -1,14 +1,15 @@
-import type { CaseSkin, SkinRarity } from "../types/case";
+import type { CaseItem, ItemRarity } from "../types/case";
 
 type SkinCardProps = {
-    skin: CaseSkin;
+    skin: CaseItem;
 };
 
-const rarityStripeClasses: Record<SkinRarity, string> = {
+const rarityStripeClasses: Record<ItemRarity, string> = {
     "Mil-Spec": "bg-rarity-milspec",
     Restricted: "bg-rarity-restricted",
     Classified: "bg-rarity-classified",
     Covert: "bg-rarity-covert",
+    "Rare Special Item": "bg-rarity-gold",
 };
 
 export default function SkinCard({ skin }: SkinCardProps) {

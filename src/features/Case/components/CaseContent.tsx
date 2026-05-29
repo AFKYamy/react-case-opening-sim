@@ -1,8 +1,8 @@
 import SkinCard from './SkinCard'
-import type { CaseSkin } from '../types/case';
+import type { CaseItem } from '../types/case';
 
 type CaseContentProps = {
-    skins: CaseSkin[];
+    skins: CaseItem[];
 };
 
 export default function CaseContent({ skins }: CaseContentProps) {
