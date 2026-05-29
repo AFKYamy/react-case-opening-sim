@@ -23,22 +23,6 @@ const operationBravoSkinSources = [
 
 const operationBravoSkins: CaseSkin[] = [
     {
-        id: "nova-tempest",
-        skin: "Tempest",
-        weapon: "Nova",
-        category: "skin",
-        sources: operationBravoSkinSources,
-        rarity: "Mil-Spec",
-        prices: {
-            battleScarred: 4.8,
-            wellWorn: 8.48,
-            minimalWear: 15.83,
-            fieldTested: 12.15,
-            factoryNew: 19.5,
-        },
-        image: novaTempestImage,
-    },
-    {
         id: "ak-47-fire-serpent",
         skin: "Fire Serpent",
         weapon: "AK-47",
@@ -55,22 +39,6 @@ const operationBravoSkins: CaseSkin[] = [
         image: ak47FireSerpentImage,
     },
     {
-        id: "p90-emerald-dragon",
-        skin: "Emerald Dragon",
-        weapon: "P90",
-        category: "skin",
-        sources: operationBravoSkinSources,
-        rarity: "Classified",
-        prices: {
-            battleScarred: 114.15,
-            wellWorn: 191.35,
-            minimalWear: 345.74,
-            fieldTested: 268.54,
-            factoryNew: 422.93,
-        },
-        image: p90EmeraldDragonImage,
-    },
-    {
         id: "desert-eagle-golden-koi",
         skin: "Golden Koi",
         weapon: "Desert Eagle",
@@ -85,6 +53,22 @@ const operationBravoSkins: CaseSkin[] = [
             factoryNew: 317.54,
         },
         image: desertEagleGoldenKoiImage,
+    },
+    {
+        id: "p90-emerald-dragon",
+        skin: "Emerald Dragon",
+        weapon: "P90",
+        category: "skin",
+        sources: operationBravoSkinSources,
+        rarity: "Classified",
+        prices: {
+            battleScarred: 114.15,
+            wellWorn: 191.35,
+            minimalWear: 345.74,
+            fieldTested: 268.54,
+            factoryNew: 422.93,
+        },
+        image: p90EmeraldDragonImage,
     },
     {
         id: "awp-graphite",
@@ -261,6 +245,22 @@ const operationBravoSkins: CaseSkin[] = [
             factoryNew: 26.92,
         },
         image: ump45BonePileImage,
+    },
+    {
+        id: "nova-tempest",
+        skin: "Tempest",
+        weapon: "Nova",
+        category: "skin",
+        sources: operationBravoSkinSources,
+        rarity: "Mil-Spec",
+        prices: {
+            battleScarred: 4.8,
+            wellWorn: 8.48,
+            minimalWear: 15.83,
+            fieldTested: 12.15,
+            factoryNew: 19.5,
+        },
+        image: novaTempestImage,
     }
 ];
 
