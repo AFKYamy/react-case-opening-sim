@@ -41,7 +41,7 @@ export default function CaseOpeningView() {
             </section>
 
             {/* Case Contents */}
-            <CaseContent skins={selectedCase.skins} />
+            <CaseContent skins={selectedCase.skins} knives={selectedCase.knives} />
 
             {/* Drop Odds */}
             <section>
