@@ -1,5 +1,6 @@
 import type { Case, CaseSkin } from "@/features/Case/types/case";
 import { classicKnives } from "@/data/knives/classic-knives";
+import operationBravoCaseImage from "@/core/assets/cases/operation-bravo-case/operation-bravo-case.png";
 import ak47FireSerpentImage from "@/core/assets/cases/operation-bravo-case/ak-47-fire-serpent.png";
 import awpGraphiteImage from "@/core/assets/cases/operation-bravo-case/awp-graphite.png";
 import desertEagleGoldenKoiImage from "@/core/assets/cases/operation-bravo-case/desert-eagle-golden-koi.png";
@@ -270,4 +271,5 @@ export const operationBravoCase: Case = {
     collection: "The Bravo Collection",
     skins: operationBravoSkins,
     knives: classicKnives,
+    image: operationBravoCaseImage,
 };

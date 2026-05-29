@@ -39,7 +39,7 @@ export default function CaseRoller({
     }, []);
 
     return (
-        <div ref={containerRef} className="relative flex w-full items-center overflow-hidden rounded-xl bg-surface-secondary px-6 py-5">
+        <div ref={containerRef} className="relative flex h-56 w-full items-center overflow-hidden rounded-xl bg-surface-secondary px-6 py-5">
             <div className={`pointer-events-none absolute left-1/2 top-0 z-20 h-full w-1 -translate-x-1/2 ${isOpening ? "bg-rarity-gold" : "bg-neutral-50"}`}></div>
 
             <div

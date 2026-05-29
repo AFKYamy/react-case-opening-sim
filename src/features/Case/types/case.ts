@@ -51,6 +51,7 @@ export type Case = {
     id: string;
     name: string;
     collection: string;
+    image?: string;
     skins: CaseSkin[];
     knives: CaseKnife[];
 };

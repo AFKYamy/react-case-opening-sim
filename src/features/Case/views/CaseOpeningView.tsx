@@ -1,4 +1,5 @@
 import CaseContent from '../components/CaseContent'
+import CaseIdlePreview from '../components/CaseIdlePreview'
 import CaseRoller from '../components/CaseRoller'
 import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
 
@@ -14,6 +15,7 @@ export default function CaseOpeningView() {
         },
         openCase,
     } = useCaseOpeningGame();
+    const hasOpenedCase = rollItems.length > 0;
 
     return (
         // Game
@@ -27,19 +29,23 @@ export default function CaseOpeningView() {
             {/* Opening section */}
             <section className="flex flex-col items-center gap-10 rounded-2xl p-10 bg-surface">
                 {/* Case Picture / Roulette */}
-                <CaseRoller
-                    skins={selectedCase.skins}
-                    rollItems={rollItems}
-                    targetIndex={rollTargetIndex}
-                    hasRollStarted={hasRollStarted}
-                    isOpening={isOpening}
-                    lastDrop={lastDrop}
-                />
+                {hasOpenedCase ? (
+                    <CaseRoller
+                        skins={selectedCase.skins}
+                        rollItems={rollItems}
+                        targetIndex={rollTargetIndex}
+                        hasRollStarted={hasRollStarted}
+                        isOpening={isOpening}
+                        lastDrop={lastDrop}
+                    />
+                ) : (
+                    <CaseIdlePreview selectedCase={selectedCase} />
+                )}
 
                 {/* Controls */}
                 <div>
                     <button
-                        className="px-5 py-4 rounded-4xl bg-primary font-bold cursor-pointer"
+                        className="px-5 py-4 rounded-4xl bg-primary font-bold cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
                         disabled={isOpening}
                         onClick={openCase}
                     >
