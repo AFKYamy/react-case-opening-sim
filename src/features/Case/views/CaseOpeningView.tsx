@@ -1,4 +1,5 @@
 import CaseContent from '../components/CaseContent'
+import CaseRoller from '../components/CaseRoller'
 import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
 
 export default function CaseOpeningView() {
@@ -22,11 +23,7 @@ export default function CaseOpeningView() {
             {/* Opening section */}
             <section className="flex flex-col items-center gap-10 rounded-2xl p-10 bg-surface">
                 {/* Case Picture / Roulette */}
-                <div className="flex items-center w-full px-10 py-5 rounded-2xl min-h-60 bg-surface-secondary">
-                    <div className="w-max h-full p-10 bg-gray-500">
-                        <p>Opening...</p>
-                    </div>
-                </div>
+                <CaseRoller skins={selectedCase.skins} />
 
                 {/* Controls */}
                 <div>

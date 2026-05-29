@@ -8,6 +8,14 @@ export type KnifeRarity = "Rare Special Item";
 
 export type ItemRarity = SkinRarity | KnifeRarity;
 
+export const rarityColorClasses: Record<ItemRarity, string> = {
+    "Mil-Spec": "bg-rarity-milspec",
+    Restricted: "bg-rarity-restricted",
+    Classified: "bg-rarity-classified",
+    Covert: "bg-rarity-covert",
+    "Rare Special Item": "bg-rarity-gold",
+};
+
 export type CaseItemCategory = "skin" | "knife";
 
 export type SkinPrices = {

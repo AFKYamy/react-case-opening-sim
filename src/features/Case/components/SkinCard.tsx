@@ -1,15 +1,7 @@
-import type { CaseItem, ItemRarity } from "../types/case";
+import { rarityColorClasses, type CaseItem } from "../types/case";
 
 type SkinCardProps = {
     skin: CaseItem;
-};
-
-const rarityStripeClasses: Record<ItemRarity, string> = {
-    "Mil-Spec": "bg-rarity-milspec",
-    Restricted: "bg-rarity-restricted",
-    Classified: "bg-rarity-classified",
-    Covert: "bg-rarity-covert",
-    "Rare Special Item": "bg-rarity-gold",
 };
 
 export default function SkinCard({ skin }: SkinCardProps) {
@@ -19,7 +11,7 @@ export default function SkinCard({ skin }: SkinCardProps) {
 
     return (
         <div className="grid grid-rows-[0.5rem_3.75rem_1fr_1.25rem] items-center rounded-lg px-3 pb-3 pt-2 w-56 h-72 bg-surface">
-            <div className={`rounded-full w-full h-2 ${rarityStripeClasses[skin.rarity]}`}></div>
+            <div className={`rounded-full w-full h-2 ${rarityColorClasses[skin.rarity]}`}></div>
 
             <div className="self-start pt-4">
                 <p className="text-base leading-tight min-h-6">{skin.weapon}</p>
