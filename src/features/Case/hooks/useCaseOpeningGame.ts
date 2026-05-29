@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { operationBravoCase } from "@/data/cases/operation-bravo-case";
 import type { CaseItem } from "../types/case";
-import { ROLL_DURATION_MS, ROLL_ITEM_COUNT, ROLL_TARGET_INDEX } from "../constants/roll";
-
-const getRandomItem = (items: CaseItem[]) => items[Math.floor(Math.random() * items.length)];
+import { ROLL_DURATION_MS, ROLL_TARGET_INDEX } from "../constants/roll";
+import { createRollItems } from "../lib/createRollItems";
+import { getRandomDrop } from "../lib/getRandomDrop";
 
 export default function useCaseOpeningGame() {
     const selectedCase = operationBravoCase;
@@ -37,19 +37,12 @@ export default function useCaseOpeningGame() {
             return;
         }
 
-        const pool = selectedCase.skins;
-        if (pool.length === 0) {
+        const winner = getRandomDrop(selectedCase);
+        if (!winner) {
             return;
         }
 
-        const winner = getRandomItem(pool);
-        const nextRollItems = Array.from({ length: ROLL_ITEM_COUNT }, (_, index) => {
-            if (index === ROLL_TARGET_INDEX) {
-                return winner;
-            }
-
-            return getRandomItem(pool);
-        });
+        const nextRollItems = createRollItems(selectedCase, winner);
 
         if (finishTimeoutRef.current) {
             window.clearTimeout(finishTimeoutRef.current);
