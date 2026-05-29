@@ -7,6 +7,10 @@ export default function CaseOpeningView() {
         values: {
             selectedCase,
             isOpening,
+            lastDrop,
+            rollItems,
+            rollTargetIndex,
+            hasRollStarted,
         },
         openCase,
     } = useCaseOpeningGame();
@@ -23,7 +27,14 @@ export default function CaseOpeningView() {
             {/* Opening section */}
             <section className="flex flex-col items-center gap-10 rounded-2xl p-10 bg-surface">
                 {/* Case Picture / Roulette */}
-                <CaseRoller skins={selectedCase.skins} />
+                <CaseRoller
+                    skins={selectedCase.skins}
+                    rollItems={rollItems}
+                    targetIndex={rollTargetIndex}
+                    hasRollStarted={hasRollStarted}
+                    isOpening={isOpening}
+                    lastDrop={lastDrop}
+                />
 
                 {/* Controls */}
                 <div>
