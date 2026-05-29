@@ -18,15 +18,15 @@ export default function SkinCard({ skin }: SkinCardProps) {
     const maxPrice = Math.max(...prices);
 
     return (
-        <div className="grid grid-rows-[0.75rem_4.75rem_1fr_1.5rem] items-center rounded-2xl px-4 pb-4 pt-3 w-80 h-96 bg-surface">
-            <div className={`rounded-xl w-full h-3 ${rarityStripeClasses[skin.rarity]}`}></div>
+        <div className="grid grid-rows-[0.5rem_3.75rem_1fr_1.25rem] items-center rounded-lg px-3 pb-3 pt-2 w-56 h-72 bg-surface">
+            <div className={`rounded-full w-full h-2 ${rarityStripeClasses[skin.rarity]}`}></div>
 
-            <div className="self-start pt-5">
-                <p className="text-lg leading-tight min-h-7">{skin.weapon}</p>
-                <p className="text-muted leading-tight min-h-6">{skin.skin}</p>
+            <div className="self-start pt-4">
+                <p className="text-base leading-tight min-h-6">{skin.weapon}</p>
+                <p className="text-sm text-muted leading-tight min-h-5">{skin.skin}</p>
             </div>
 
-            <div className="flex items-center justify-center h-full min-h-0 w-full px-5 py-4">
+            <div className="flex items-center justify-center h-full min-h-0 w-full px-3 py-3">
                 {skin.image && (
                     <img
                         src={skin.image}
@@ -36,7 +36,7 @@ export default function SkinCard({ skin }: SkinCardProps) {
                 )}
             </div>
             
-            <p className="self-end text-secondary leading-none">${minPrice} - ${maxPrice}</p>
+            <p className="self-end text-sm text-secondary leading-none">${minPrice} - ${maxPrice}</p>
         </div>
     )
 }
