@@ -9,6 +9,20 @@ type SellInventoryItemModalProps = {
     onConfirm: () => void;
 };
 
+type InventorySaleStatProps = {
+    label: string;
+    value: string;
+};
+
+function InventorySaleStat({ label, value }: InventorySaleStatProps) {
+    return (
+        <div className="rounded-lg bg-surface-secondary p-4">
+            <p className="text-xs font-bold uppercase tracking-wide text-muted">{label}</p>
+            <p className="mt-1 text-lg font-bold">{value}</p>
+        </div>
+    );
+}
+
 export default function SellInventoryItemModal({
     inventoryItem,
     onCancel,
@@ -48,9 +62,9 @@ export default function SellInventoryItemModal({
                         />
                     </div>
 
-                    <div className="rounded-lg bg-surface-secondary p-4 text-center">
-                        <p className="font-bold">{condition.label}</p>
-                        <p className="text-sm text-muted">Float {formatPrizeFloat(float)}</p>
+                    <div className="grid grid-cols-2 gap-3">
+                        <InventorySaleStat label="Condition" value={condition.label} />
+                        <InventorySaleStat label="Float" value={formatPrizeFloat(float)} />
                     </div>
 
                     <p className="text-center text-sm text-muted">
