@@ -12,6 +12,7 @@ export default function useCaseOpeningGame() {
     const selectedCase = operationBravoCase;
     const spendBalance = useGameStore((state) => state.spendBalance);
     const addBalance = useGameStore((state) => state.addBalance);
+    const addInventoryItem = useGameStore((state) => state.addInventoryItem);
     const [isOpening, setIsOpening] = useState(false);
     const [lastDrop, setLastDrop] = useState<CaseItem | null>(null);
     const [prizeDrop, setPrizeDrop] = useState<PrizeDrop | null>(null);
@@ -108,6 +109,15 @@ export default function useCaseOpeningGame() {
         clearPrizeDrop();
     }
 
+    function keepPrizeDrop() {
+        if (!prizeDrop) {
+            return;
+        }
+
+        addInventoryItem(prizeDrop);
+        clearPrizeDrop();
+    }
+
     return {
         values: {
             selectedCase,
@@ -120,6 +130,7 @@ export default function useCaseOpeningGame() {
         },
         actions: {
             clearPrizeDrop,
+            keepPrizeDrop,
             openCase,
             openCaseAgain,
             sellPrizeDrop,

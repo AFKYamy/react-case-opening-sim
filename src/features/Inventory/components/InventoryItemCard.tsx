@@ -1,15 +1,15 @@
 import { formatCurrency } from "@/core/lib/formatCurrency";
 import { formatPrizeFloat } from "@/features/Case/lib/formatPrize";
 import { rarityColorClasses } from "@/features/Case/types/case";
-import type { PrizeDrop } from "@/features/Case/types/prize";
+import type { InventoryItem } from "../types/inventory";
 
 type InventoryItemCardProps = {
-    prizeDrop: PrizeDrop;
-    onSell?: (prizeDrop: PrizeDrop) => void;
+    inventoryItem: InventoryItem;
+    onSell: (inventoryId: string) => void;
 };
 
-export default function InventoryItemCard({ prizeDrop, onSell }: InventoryItemCardProps) {
-    const { item, condition, float, sellPrice } = prizeDrop;
+export default function InventoryItemCard({ inventoryItem, onSell }: InventoryItemCardProps) {
+    const { inventoryId, item, condition, float, sellPrice } = inventoryItem;
     const itemName = `${item.weapon} ${item.skin}`;
 
     return (
@@ -37,9 +37,8 @@ export default function InventoryItemCard({ prizeDrop, onSell }: InventoryItemCa
             </div>
 
             <button
-                className="self-end rounded-lg bg-secondary px-3 py-2 text-sm font-bold leading-none text-text transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
-                disabled={!onSell}
-                onClick={() => onSell?.(prizeDrop)}
+                className="self-end rounded-lg bg-secondary px-3 py-2 text-sm font-bold leading-none text-text transition hover:brightness-110"
+                onClick={() => onSell(inventoryId)}
                 type="button"
             >
                 Sell for {formatCurrency(sellPrice)}

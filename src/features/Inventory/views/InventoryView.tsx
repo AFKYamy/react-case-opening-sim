@@ -1,14 +1,12 @@
 import InventoryItemCard from "../components/InventoryItemCard";
-import { placeholderInventoryItems } from "../lib/placeholderInventory";
-import type { PrizeDrop } from "@/features/Case/types/prize";
-
-type InventoryViewProps = {
-    items?: PrizeDrop[];
-};
+import { useGameStore } from "@/store/gameStore";
 
 const gridClassName = "grid w-full grid-cols-[repeat(auto-fill,14rem)] justify-between gap-6 text-center";
 
-export default function InventoryView({ items = placeholderInventoryItems }: InventoryViewProps) {
+export default function InventoryView() {
+    const inventoryItems = useGameStore((state) => state.inventoryItems);
+    const sellInventoryItem = useGameStore((state) => state.sellInventoryItem);
+
     return (
         <section className="container mx-auto flex flex-col gap-8 px-4 py-10">
             <div>
@@ -16,12 +14,13 @@ export default function InventoryView({ items = placeholderInventoryItems }: Inv
                 <p className="text-muted">All skins you own.</p>
             </div>
 
-            {items.length > 0 ? (
+            {inventoryItems.length > 0 ? (
                 <div className={gridClassName}>
-                    {items.map((prizeDrop, index) => (
+                    {inventoryItems.map((inventoryItem) => (
                         <InventoryItemCard
-                            key={`${prizeDrop.item.id}-${prizeDrop.condition.key}-${prizeDrop.float}-${index}`}
-                            prizeDrop={prizeDrop}
+                            key={inventoryItem.inventoryId}
+                            inventoryItem={inventoryItem}
+                            onSell={sellInventoryItem}
                         />
                     ))}
                 </div>
@@ -29,7 +28,7 @@ export default function InventoryView({ items = placeholderInventoryItems }: Inv
                 <div className="grid min-h-56 place-items-center rounded-xl bg-surface px-6 py-10 text-center">
                     <div>
                         <p className="text-lg font-bold">No skins yet</p>
-                        <p className="text-sm text-muted">Open cases build your inventory.</p>
+                        <p className="text-sm text-muted">Open cases to build your inventory.</p>
                     </div>
                 </div>
             )}
