@@ -96,6 +96,10 @@ export default function useCaseOpeningGame() {
     }
 
     function openCaseAgain() {
+        if (prizeDrop) {
+            addInventoryItem(prizeDrop);
+        }
+
         clearPrizeDrop();
         openCase();
     }
