@@ -1,5 +1,7 @@
+import { useState } from "react";
 import CaseIdlePreview from "./CaseIdlePreview";
 import CaseRoller from "./CaseRoller";
+import DropOddsModal from "./DropOddsModal";
 import { formatCurrency } from "@/core/lib/formatCurrency";
 import type { Case, CaseItem } from "../types/case";
 
@@ -24,6 +26,7 @@ export default function CaseOpeningPanel({
     canOpenCase,
     onOpenCase,
 }: CaseOpeningPanelProps) {
+    const [isDropOddsOpen, setIsDropOddsOpen] = useState(false);
     const hasOpenedCase = rollItems.length > 0;
     const hasInsufficientBalance = !isOpening && !canOpenCase;
 
@@ -43,15 +46,26 @@ export default function CaseOpeningPanel({
             )}
 
             <div className="flex flex-col items-center gap-3">
-                <button
-                    className="rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
-                    disabled={!canOpenCase}
-                    onClick={onOpenCase}
-                    title={hasInsufficientBalance ? "Insufficient balance" : undefined}
-                    type="button"
-                >
-                    Open for {formatCurrency(selectedCase.openPrice)}
-                </button>
+                <div className="flex items-center gap-3">
+                    <button
+                        className="rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
+                        disabled={!canOpenCase}
+                        onClick={onOpenCase}
+                        title={hasInsufficientBalance ? "Insufficient balance" : undefined}
+                        type="button"
+                    >
+                        Open for {formatCurrency(selectedCase.openPrice)}
+                    </button>
+
+                    <button
+                        className="grid h-11 w-11 place-items-center rounded-full bg-surface-secondary text-sm font-bold text-text transition hover:brightness-110"
+                        onClick={() => setIsDropOddsOpen(true)}
+                        title="Show drop odds"
+                        type="button"
+                    >
+                        %
+                    </button>
+                </div>
 
                 {hasInsufficientBalance && (
                     <p aria-live="polite" className="text-sm font-bold text-secondary">
@@ -59,6 +73,11 @@ export default function CaseOpeningPanel({
                     </p>
                 )}
             </div>
+
+            <DropOddsModal
+                isOpen={isDropOddsOpen}
+                onClose={() => setIsDropOddsOpen(false)}
+            />
         </section>
     );
 }
