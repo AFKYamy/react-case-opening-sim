@@ -1,6 +1,6 @@
 import AppNavigation from "./AppNavigation";
-import WalletBalance from "./WalletBalance";
 import type { AppView } from "@/core/types/navigation";
+import WalletBalance from "@/features/Wallet/components/WalletBalance";
 
 type AppHeaderProps = {
     activeView: AppView;

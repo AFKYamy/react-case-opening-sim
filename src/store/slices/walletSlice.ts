@@ -1,11 +1,13 @@
 import type { StateCreator } from "zustand";
 
-const INITIAL_BALANCE = 500;
+export const DEFAULT_BALANCE = 500;
 
 export type WalletSlice = {
     balance: number;
     canAfford: (amount: number) => boolean;
     addBalance: (amount: number) => void;
+    resetBalance: () => void;
+    setBalance: (amount: number) => void;
     spendBalance: (amount: number) => boolean;
 };
 
@@ -20,7 +22,7 @@ const normalizeAmount = (amount: number) => {
 const roundMoney = (amount: number) => Number(amount.toFixed(2));
 
 export const createWalletSlice: StateCreator<WalletSlice, [], [], WalletSlice> = (set, get) => ({
-    balance: INITIAL_BALANCE,
+    balance: DEFAULT_BALANCE,
 
     canAfford: (amount) => {
         return get().balance >= normalizeAmount(amount);
@@ -36,6 +38,18 @@ export const createWalletSlice: StateCreator<WalletSlice, [], [], WalletSlice> =
         set((state) => ({
             balance: roundMoney(state.balance + safeAmount),
         }));
+    },
+
+    resetBalance: () => {
+        set({
+            balance: DEFAULT_BALANCE,
+        });
+    },
+
+    setBalance: (amount) => {
+        set({
+            balance: roundMoney(normalizeAmount(amount)),
+        });
     },
 
     spendBalance: (amount) => {
