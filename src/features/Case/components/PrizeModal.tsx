@@ -4,6 +4,8 @@ import type { PrizeDrop } from "../types/prize";
 
 type PrizeModalProps = {
     prizeDrop: PrizeDrop | null;
+    canOpenCase: boolean;
+    onSell: () => void;
     onOpenAgain: () => void;
 };
 
@@ -21,7 +23,7 @@ function PrizeStat({ label, value }: PrizeStatProps) {
     );
 }
 
-export default function PrizeModal({ prizeDrop, onOpenAgain }: PrizeModalProps) {
+export default function PrizeModal({ prizeDrop, canOpenCase, onSell, onOpenAgain }: PrizeModalProps) {
     if (!prizeDrop) {
         return null;
     }
@@ -29,6 +31,7 @@ export default function PrizeModal({ prizeDrop, onOpenAgain }: PrizeModalProps) 
     const { item, condition, float, sellPrice } = prizeDrop;
     const itemName = `${item.weapon} | ${item.skin}`;
     const titleId = `prize-modal-title-${item.id}`;
+    const hasInsufficientBalance = !canOpenCase;
 
     return (
         <div
@@ -65,6 +68,7 @@ export default function PrizeModal({ prizeDrop, onOpenAgain }: PrizeModalProps) 
                         <button
                             aria-label={`Sell ${itemName} for ${formatPrizePrice(sellPrice)}`}
                             className="cursor-pointer rounded-lg bg-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
+                            onClick={onSell}
                             type="button"
                         >
                             Sell {formatPrizePrice(sellPrice)}
@@ -78,13 +82,21 @@ export default function PrizeModal({ prizeDrop, onOpenAgain }: PrizeModalProps) 
                         </button>
 
                         <button
-                            className="cursor-pointer rounded-lg bg-primary px-4 py-3 font-bold text-text transition hover:bg-primary-dark"
+                            className="cursor-pointer rounded-lg bg-primary px-4 py-3 font-bold text-text transition hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
+                            disabled={!canOpenCase}
                             onClick={onOpenAgain}
+                            title={hasInsufficientBalance ? "Insufficient balance" : undefined}
                             type="button"
                         >
                             Open again
                         </button>
                     </div>
+
+                    {hasInsufficientBalance && (
+                        <p aria-live="polite" className="text-center text-sm font-bold text-secondary">
+                            Insufficient balance to open again
+                        </p>
+                    )}
                 </div>
             </div>
         </div>

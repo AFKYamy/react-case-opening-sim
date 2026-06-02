@@ -6,9 +6,12 @@ import { ROLL_DURATION_MS, ROLL_TARGET_INDEX } from "../constants/roll";
 import { createRollItems } from "../lib/createRollItems";
 import { getRandomDrop } from "../lib/getRandomDrop";
 import { createPrizeDrop } from "../lib/wear";
+import { useGameStore } from "@/store/gameStore";
 
 export default function useCaseOpeningGame() {
     const selectedCase = operationBravoCase;
+    const spendBalance = useGameStore((state) => state.spendBalance);
+    const addBalance = useGameStore((state) => state.addBalance);
     const [isOpening, setIsOpening] = useState(false);
     const [lastDrop, setLastDrop] = useState<CaseItem | null>(null);
     const [prizeDrop, setPrizeDrop] = useState<PrizeDrop | null>(null);
@@ -40,8 +43,15 @@ export default function useCaseOpeningGame() {
             return;
         }
 
+        const paidForCase = spendBalance(selectedCase.openPrice);
+        if (!paidForCase) {
+            return;
+        }
+
         const winner = getRandomDrop(selectedCase);
         if (!winner) {
+            addBalance(selectedCase.openPrice);
+
             return;
         }
 
@@ -89,6 +99,15 @@ export default function useCaseOpeningGame() {
         openCase();
     }
 
+    function sellPrizeDrop() {
+        if (!prizeDrop) {
+            return;
+        }
+
+        addBalance(prizeDrop.sellPrice);
+        clearPrizeDrop();
+    }
+
     return {
         values: {
             selectedCase,
@@ -103,6 +122,7 @@ export default function useCaseOpeningGame() {
             clearPrizeDrop,
             openCase,
             openCaseAgain,
+            sellPrizeDrop,
         },
     }
 }

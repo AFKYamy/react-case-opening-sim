@@ -1,4 +1,4 @@
-import { formatCurrency } from "./formatCurrency";
+import { formatCurrency } from "@/core/lib/formatCurrency";
 
 export const formatPrizePrice = formatCurrency;
 

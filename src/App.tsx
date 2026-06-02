@@ -1,12 +1,17 @@
 import './core/css/App.css'
+import AppHeader from './core/components/AppHeader'
 import CaseOpeningView from './features/Case/views/CaseOpeningView'
 
 function App() {
 
     return (
-        <main className="min-h-screen bg-bg text-text">
-            <CaseOpeningView />
-        </main>
+        <div className="min-h-screen bg-bg text-text">
+            <AppHeader />
+
+            <main>
+                <CaseOpeningView />
+            </main>
+        </div>
     )
 }
 

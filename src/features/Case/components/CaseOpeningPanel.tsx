@@ -1,6 +1,6 @@
 import CaseIdlePreview from "./CaseIdlePreview";
 import CaseRoller from "./CaseRoller";
-import { formatCurrency } from "../lib/formatCurrency";
+import { formatCurrency } from "@/core/lib/formatCurrency";
 import type { Case, CaseItem } from "../types/case";
 
 type CaseOpeningPanelProps = {
@@ -10,6 +10,7 @@ type CaseOpeningPanelProps = {
     rollItems: CaseItem[];
     rollTargetIndex: number;
     hasRollStarted: boolean;
+    canOpenCase: boolean;
     onOpenCase: () => void;
 };
 
@@ -20,9 +21,11 @@ export default function CaseOpeningPanel({
     rollItems,
     rollTargetIndex,
     hasRollStarted,
+    canOpenCase,
     onOpenCase,
 }: CaseOpeningPanelProps) {
     const hasOpenedCase = rollItems.length > 0;
+    const hasInsufficientBalance = !isOpening && !canOpenCase;
 
     return (
         <section className="flex flex-col items-center gap-10 rounded-2xl bg-surface p-10">
@@ -39,14 +42,23 @@ export default function CaseOpeningPanel({
                 <CaseIdlePreview selectedCase={selectedCase} />
             )}
 
-            <button
-                className="cursor-pointer rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
-                disabled={isOpening}
-                onClick={onOpenCase}
-                type="button"
-            >
-                Open for {formatCurrency(selectedCase.openPrice)}
-            </button>
+            <div className="flex flex-col items-center gap-3">
+                <button
+                    className="cursor-pointer rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
+                    disabled={!canOpenCase}
+                    onClick={onOpenCase}
+                    title={hasInsufficientBalance ? "Insufficient balance" : undefined}
+                    type="button"
+                >
+                    Open for {formatCurrency(selectedCase.openPrice)}
+                </button>
+
+                {hasInsufficientBalance && (
+                    <p aria-live="polite" className="text-sm font-bold text-secondary">
+                        Insufficient balance
+                    </p>
+                )}
+            </div>
         </section>
     );
 }

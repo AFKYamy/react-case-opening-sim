@@ -2,6 +2,7 @@ import CaseContent from '../components/CaseContent'
 import CaseOpeningPanel from '../components/CaseOpeningPanel'
 import PrizeModal from '../components/PrizeModal'
 import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
+import { useGameStore } from '@/store/gameStore';
 
 export default function CaseOpeningView() {
     const {
@@ -17,8 +18,12 @@ export default function CaseOpeningView() {
         actions: {
             openCase,
             openCaseAgain,
+            sellPrizeDrop,
         },
     } = useCaseOpeningGame();
+    const canOpenCase = useGameStore((state) => {
+        return !isOpening && state.canAfford(selectedCase.openPrice);
+    });
 
     return (
         <div className="container flex flex-col gap-20 mx-auto px-4 py-10">
@@ -34,6 +39,7 @@ export default function CaseOpeningView() {
                 rollItems={rollItems}
                 rollTargetIndex={rollTargetIndex}
                 hasRollStarted={hasRollStarted}
+                canOpenCase={canOpenCase}
                 onOpenCase={openCase}
             />
 
@@ -43,7 +49,12 @@ export default function CaseOpeningView() {
                 {/* Button opens Modal that will show odds */}
             </section>
 
-            <PrizeModal prizeDrop={prizeDrop} onOpenAgain={openCaseAgain} />
+            <PrizeModal
+                prizeDrop={prizeDrop}
+                canOpenCase={canOpenCase}
+                onSell={sellPrizeDrop}
+                onOpenAgain={openCaseAgain}
+            />
         </div>
     )
 }
