@@ -1,4 +1,5 @@
-import type { CaseItem, PrizeDrop, WearCondition, WearConditionKey } from "../types/case";
+import type { CaseItem } from "../types/case";
+import type { PrizeDrop, WearCondition, WearConditionKey } from "../types/prize";
 
 const wearConditions: WearCondition[] = [
     {
@@ -77,4 +78,3 @@ export const createPrizeDrop = (item: CaseItem): PrizeDrop => {
         sellPrice: item.prices[condition.key],
     };
 };
-

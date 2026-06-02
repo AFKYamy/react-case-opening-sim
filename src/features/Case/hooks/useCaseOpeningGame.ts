@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { operationBravoCase } from "@/data/cases/operation-bravo-case";
-import type { CaseItem, PrizeDrop } from "../types/case";
+import type { CaseItem } from "../types/case";
+import type { PrizeDrop } from "../types/prize";
 import { ROLL_DURATION_MS, ROLL_TARGET_INDEX } from "../constants/roll";
 import { createRollItems } from "../lib/createRollItems";
 import { getRandomDrop } from "../lib/getRandomDrop";
