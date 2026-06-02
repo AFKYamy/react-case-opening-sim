@@ -5,11 +5,11 @@ import type { InventoryItem } from "../types/inventory";
 
 type InventoryItemCardProps = {
     inventoryItem: InventoryItem;
-    onSell: (inventoryId: string) => void;
+    onSell: (inventoryItem: InventoryItem) => void;
 };
 
 export default function InventoryItemCard({ inventoryItem, onSell }: InventoryItemCardProps) {
-    const { inventoryId, item, condition, float, sellPrice } = inventoryItem;
+    const { item, condition, float, sellPrice } = inventoryItem;
     const itemName = `${item.weapon} ${item.skin}`;
 
     return (
@@ -38,7 +38,7 @@ export default function InventoryItemCard({ inventoryItem, onSell }: InventoryIt
 
             <button
                 className="self-end rounded-lg bg-secondary px-3 py-2 text-sm font-bold leading-none text-text transition hover:brightness-110"
-                onClick={() => onSell(inventoryId)}
+                onClick={() => onSell(inventoryItem)}
                 type="button"
             >
                 Sell for {formatCurrency(sellPrice)}

@@ -1,11 +1,24 @@
+import { useState } from "react";
 import InventoryItemCard from "../components/InventoryItemCard";
+import SellInventoryItemModal from "../components/SellInventoryItemModal";
 import { useGameStore } from "@/store/gameStore";
+import type { InventoryItem } from "../types/inventory";
 
 const gridClassName = "grid w-full grid-cols-[repeat(auto-fill,14rem)] justify-between gap-6 text-center";
 
 export default function InventoryView() {
     const inventoryItems = useGameStore((state) => state.inventoryItems);
     const sellInventoryItem = useGameStore((state) => state.sellInventoryItem);
+    const [itemPendingSale, setItemPendingSale] = useState<InventoryItem | null>(null);
+
+    const confirmSale = () => {
+        if (!itemPendingSale) {
+            return;
+        }
+
+        sellInventoryItem(itemPendingSale.inventoryId);
+        setItemPendingSale(null);
+    };
 
     return (
         <section className="container mx-auto flex flex-col gap-8 px-4 py-10">
@@ -20,7 +33,7 @@ export default function InventoryView() {
                         <InventoryItemCard
                             key={inventoryItem.inventoryId}
                             inventoryItem={inventoryItem}
-                            onSell={sellInventoryItem}
+                            onSell={setItemPendingSale}
                         />
                     ))}
                 </div>
@@ -32,6 +45,12 @@ export default function InventoryView() {
                     </div>
                 </div>
             )}
+
+            <SellInventoryItemModal
+                inventoryItem={itemPendingSale}
+                onCancel={() => setItemPendingSale(null)}
+                onConfirm={confirmSale}
+            />
         </section>
     );
 }
