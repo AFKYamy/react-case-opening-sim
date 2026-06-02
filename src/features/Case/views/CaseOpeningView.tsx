@@ -16,6 +16,7 @@ export default function CaseOpeningView() {
             prizeDrop,
         },
         actions: {
+            clearPrizeDrop,
             openCase,
             openCaseAgain,
             sellPrizeDrop,
@@ -53,6 +54,7 @@ export default function CaseOpeningView() {
                 prizeDrop={prizeDrop}
                 canOpenCase={canOpenCase}
                 onSell={sellPrizeDrop}
+                onKeep={clearPrizeDrop}
                 onOpenAgain={openCaseAgain}
             />
         </div>

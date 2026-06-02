@@ -6,6 +6,7 @@ type PrizeModalProps = {
     prizeDrop: PrizeDrop | null;
     canOpenCase: boolean;
     onSell: () => void;
+    onKeep: () => void;
     onOpenAgain: () => void;
 };
 
@@ -23,7 +24,13 @@ function PrizeStat({ label, value }: PrizeStatProps) {
     );
 }
 
-export default function PrizeModal({ prizeDrop, canOpenCase, onSell, onOpenAgain }: PrizeModalProps) {
+export default function PrizeModal({
+    prizeDrop,
+    canOpenCase,
+    onSell,
+    onKeep,
+    onOpenAgain,
+}: PrizeModalProps) {
     if (!prizeDrop) {
         return null;
     }
@@ -76,6 +83,7 @@ export default function PrizeModal({ prizeDrop, canOpenCase, onSell, onOpenAgain
 
                         <button
                             className="cursor-pointer rounded-lg bg-surface-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
+                            onClick={onKeep}
                             type="button"
                         >
                             Keep
