@@ -44,7 +44,7 @@ export default function CaseOpeningPanel({
 
             <div className="flex flex-col items-center gap-3">
                 <button
-                    className="cursor-pointer rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
+                    className="rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
                     disabled={!canOpenCase}
                     onClick={onOpenCase}
                     title={hasInsufficientBalance ? "Insufficient balance" : undefined}

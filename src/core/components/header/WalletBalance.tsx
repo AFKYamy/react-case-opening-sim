@@ -1,5 +1,5 @@
 import { useGameStore } from "@/store/gameStore";
-import { formatCurrency } from "../lib/formatCurrency";
+import { formatCurrency } from "../../lib/formatCurrency";
 
 export default function WalletBalance() {
     const balance = useGameStore((state) => state.balance);

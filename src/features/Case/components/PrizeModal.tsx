@@ -74,7 +74,7 @@ export default function PrizeModal({
                     <div className="grid gap-3 sm:grid-cols-3">
                         <button
                             aria-label={`Sell ${itemName} for ${formatPrizePrice(sellPrice)}`}
-                            className="cursor-pointer rounded-lg bg-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
+                            className="rounded-lg bg-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
                             onClick={onSell}
                             type="button"
                         >
@@ -82,7 +82,7 @@ export default function PrizeModal({
                         </button>
 
                         <button
-                            className="cursor-pointer rounded-lg bg-surface-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
+                            className="rounded-lg bg-surface-secondary px-4 py-3 font-bold text-text transition hover:brightness-110"
                             onClick={onKeep}
                             type="button"
                         >
@@ -90,7 +90,7 @@ export default function PrizeModal({
                         </button>
 
                         <button
-                            className="cursor-pointer rounded-lg bg-primary px-4 py-3 font-bold text-text transition hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
+                            className="rounded-lg bg-primary px-4 py-3 font-bold text-text transition hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
                             disabled={!canOpenCase}
                             onClick={onOpenAgain}
                             title={hasInsufficientBalance ? "Insufficient balance" : undefined}
