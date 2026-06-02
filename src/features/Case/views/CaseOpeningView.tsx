@@ -2,7 +2,6 @@ import CaseContent from '../components/CaseContent'
 import CaseOpeningPanel from '../components/CaseOpeningPanel'
 import PrizeModal from '../components/PrizeModal'
 import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
-import { useGameStore } from '@/store/gameStore';
 
 export default function CaseOpeningView() {
     const {
@@ -14,6 +13,7 @@ export default function CaseOpeningView() {
             rollTargetIndex,
             hasRollStarted,
             prizeDrop,
+            canOpenCase,
         },
         actions: {
             keepPrizeDrop,
@@ -22,9 +22,6 @@ export default function CaseOpeningView() {
             sellPrizeDrop,
         },
     } = useCaseOpeningGame();
-    const canOpenCase = useGameStore((state) => {
-        return !isOpening && state.canAfford(selectedCase.openPrice);
-    });
 
     return (
         <div className="container flex flex-col gap-20 mx-auto px-4 py-10">

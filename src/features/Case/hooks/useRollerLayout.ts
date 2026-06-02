@@ -50,7 +50,9 @@ export default function useRollerLayout({
     });
 
     return {
-        containerRef,
-        translateX: hasRollItems && hasRollStarted ? targetTranslate : 0,
+        values: {
+            containerRef,
+            translateX: hasRollItems && hasRollStarted ? targetTranslate : 0,
+        },
     };
 }

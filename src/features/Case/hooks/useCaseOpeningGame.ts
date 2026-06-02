@@ -19,6 +19,9 @@ export default function useCaseOpeningGame() {
     const [rollItems, setRollItems] = useState<CaseItem[]>([]);
     const [rollTargetIndex, setRollTargetIndex] = useState(0);
     const [hasRollStarted, setHasRollStarted] = useState(false);
+    const canOpenCase = useGameStore((state) => {
+        return !isOpening && state.canAfford(selectedCase.openPrice);
+    });
     const finishTimeoutRef = useRef<number | null>(null);
     const firstFrameRef = useRef<number | null>(null);
     const secondFrameRef = useRef<number | null>(null);
@@ -128,6 +131,7 @@ export default function useCaseOpeningGame() {
             isOpening,
             lastDrop,
             prizeDrop,
+            canOpenCase,
             rollItems,
             rollTargetIndex,
             hasRollStarted,
@@ -139,5 +143,5 @@ export default function useCaseOpeningGame() {
             openCaseAgain,
             sellPrizeDrop,
         },
-    }
+    };
 }

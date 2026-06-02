@@ -10,10 +10,12 @@ export default function InventoryView() {
             inventoryItems,
             itemPendingSale,
         },
+        setters: {
+            setItemPendingSale,
+        },
         actions: {
             cancelSale,
             confirmSale,
-            requestSale,
         },
     } = useInventory();
 
@@ -30,7 +32,7 @@ export default function InventoryView() {
                         <InventoryItemCard
                             key={inventoryItem.inventoryId}
                             inventoryItem={inventoryItem}
-                            onSell={requestSale}
+                            onSell={setItemPendingSale}
                         />
                     ))}
                 </div>

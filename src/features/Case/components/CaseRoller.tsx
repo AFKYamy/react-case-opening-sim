@@ -22,7 +22,9 @@ export default function CaseRoller({
 }: CaseRollerProps) {
     const items = rollItems.length > 0 ? rollItems : skins;
     const hasRollItems = rollItems.length > 0;
-    const { containerRef, translateX } = useRollerLayout({
+    const {
+        values: { containerRef, translateX },
+    } = useRollerLayout({
         hasRollItems,
         hasRollStarted,
         targetIndex,

@@ -25,10 +25,12 @@ export default function useInventory() {
             inventoryItems,
             itemPendingSale,
         },
+        setters: {
+            setItemPendingSale,
+        },
         actions: {
             cancelSale,
             confirmSale,
-            requestSale: setItemPendingSale,
         },
     };
 }
