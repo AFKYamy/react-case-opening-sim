@@ -269,6 +269,7 @@ export const operationBravoCase: Case = {
     id: "operation-bravo-case",
     name: "Operation Bravo Case",
     collection: "The Bravo Collection",
+    openPrice: 87.29,
     skins: operationBravoSkins,
     knives: classicKnives,
     image: operationBravoCaseImage,

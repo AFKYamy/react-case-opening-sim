@@ -26,6 +26,16 @@ export type SkinPrices = {
     factoryNew: number;
 };
 
+export type WearConditionKey = keyof SkinPrices;
+
+export type WearCondition = {
+    key: WearConditionKey;
+    label: string;
+    abbreviation: string;
+    floatMin: number;
+    floatMax: number;
+};
+
 export type CaseItem = {
     id: string;
     skin: string;
@@ -35,6 +45,13 @@ export type CaseItem = {
     rarity: ItemRarity;
     prices: SkinPrices;
     image: string;
+};
+
+export type PrizeDrop = {
+    item: CaseItem;
+    condition: WearCondition;
+    float: number;
+    sellPrice: number;
 };
 
 export type CaseSkin = CaseItem & {
@@ -51,6 +68,7 @@ export type Case = {
     id: string;
     name: string;
     collection: string;
+    openPrice: number;
     image?: string;
     skins: CaseSkin[];
     knives: CaseKnife[];
