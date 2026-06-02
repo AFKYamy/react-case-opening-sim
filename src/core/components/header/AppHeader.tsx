@@ -1,7 +1,6 @@
 import AppNavigation from "./AppNavigation";
 import WalletBalance from "./WalletBalance";
-
-export type AppView = "case" | "inventory";
+import type { AppView } from "@/core/types/navigation";
 
 type AppHeaderProps = {
     activeView: AppView;

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './core/css/App.css'
-import AppHeader, { type AppView } from './core/components/header/AppHeader'
+import AppHeader from './core/components/header/AppHeader'
+import type { AppView } from './core/types/navigation'
 import CaseOpeningView from './features/Case/views/CaseOpeningView'
 import InventoryView from './features/Inventory/views/InventoryView'
 

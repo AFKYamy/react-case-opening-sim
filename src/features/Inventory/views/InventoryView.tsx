@@ -1,6 +1,5 @@
-import { operationBravoCase } from "@/data/cases/operation-bravo-case";
-import { createPrizeDrop } from "@/features/Case/lib/wear";
 import InventoryItemCard from "../components/InventoryItemCard";
+import { placeholderInventoryItems } from "../lib/placeholderInventory";
 import type { PrizeDrop } from "@/features/Case/types/prize";
 
 type InventoryViewProps = {
@@ -8,9 +7,8 @@ type InventoryViewProps = {
 };
 
 const gridClassName = "grid w-full grid-cols-[repeat(auto-fill,14rem)] justify-between gap-6 text-center";
-const placeholderItems = operationBravoCase.skins.slice(0, 6).map(createPrizeDrop);
 
-export default function InventoryView({ items = placeholderItems }: InventoryViewProps) {
+export default function InventoryView({ items = placeholderInventoryItems }: InventoryViewProps) {
     return (
         <section className="container mx-auto flex flex-col gap-8 px-4 py-10">
             <div>

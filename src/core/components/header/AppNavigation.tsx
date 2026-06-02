@@ -1,4 +1,4 @@
-import type { AppView } from "./AppHeader";
+import type { AppView } from "@/core/types/navigation";
 
 type AppNavigationProps = {
     activeView: AppView;
