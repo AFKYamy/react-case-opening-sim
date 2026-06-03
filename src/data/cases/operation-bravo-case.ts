@@ -1,26 +1,28 @@
 import type { Case, CaseSkin } from "@/features/Case/types/case";
 import { classicKnives } from "@/data/knives/classic-knives";
-import operationBravoCaseImage from "@/core/assets/cases/operation-bravo-case/operation-bravo-case.png";
-import ak47FireSerpentImage from "@/core/assets/cases/operation-bravo-case/ak-47-fire-serpent.png";
-import awpGraphiteImage from "@/core/assets/cases/operation-bravo-case/awp-graphite.png";
-import desertEagleGoldenKoiImage from "@/core/assets/cases/operation-bravo-case/desert-eagle-golden-koi.png";
-import dualBerettasBlackLimbaImage from "@/core/assets/cases/operation-bravo-case/dual-berettas-black-limba.png";
-import g3sg1DemeterImage from "@/core/assets/cases/operation-bravo-case/g3sg1-demeter.png";
-import galilArShatteredImage from "@/core/assets/cases/operation-bravo-case/galil-ar-shattered.png";
-import m4a1sBrightWaterImage from "@/core/assets/cases/operation-bravo-case/m4a1-s-bright-water.png";
-import m4a4ZirkaImage from "@/core/assets/cases/operation-bravo-case/m4a4-zirka.png";
-import mac10GravenImage from "@/core/assets/cases/operation-bravo-case/mac-10-graven.png";
-import novaTempestImage from "@/core/assets/cases/operation-bravo-case/nova-tempest.png";
-import p2000OceanFoamImage from "@/core/assets/cases/operation-bravo-case/p2000-ocean-foam.png";
-import p90EmeraldDragonImage from "@/core/assets/cases/operation-bravo-case/p90-emerald-dragon.png";
-import sg553WaveSprayImage from "@/core/assets/cases/operation-bravo-case/sg-553-wave-spray.png";
-import ump45BonePileImage from "@/core/assets/cases/operation-bravo-case/ump-45-bone-pile.png";
-import uspsOvergrowthImage from "@/core/assets/cases/operation-bravo-case/usp-s-overgrowth.png";
 
 const operationBravoSkinSources = [
     "The Bravo Collection",
     "Operation Bravo Case",
 ];
+
+const operationBravoCaseImages = import.meta.glob<string>(
+    "@/core/assets/cases/operation-bravo-case/*.png",
+    {
+        eager: true,
+        import: "default",
+    },
+);
+
+const operationBravoCaseImagesById = Object.fromEntries(
+    Object.entries(operationBravoCaseImages).map(([path, image]) => {
+        const fileName = path.split("/").pop() ?? "";
+
+        return [fileName.replace(".png", ""), image];
+    }),
+);
+
+const getOperationBravoCaseImage = (id: string) => operationBravoCaseImagesById[id] ?? "";
 
 const operationBravoSkins: CaseSkin[] = [
     {
@@ -37,7 +39,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 1536.39,
             factoryNew: 2447.28,
         },
-        image: ak47FireSerpentImage,
+        image: getOperationBravoCaseImage("ak-47-fire-serpent"),
     },
     {
         id: "desert-eagle-golden-koi",
@@ -53,7 +55,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 277.71,
             factoryNew: 317.54,
         },
-        image: desertEagleGoldenKoiImage,
+        image: getOperationBravoCaseImage("desert-eagle-golden-koi"),
     },
     {
         id: "p90-emerald-dragon",
@@ -69,7 +71,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 268.54,
             factoryNew: 422.93,
         },
-        image: p90EmeraldDragonImage,
+        image: getOperationBravoCaseImage("p90-emerald-dragon"),
     },
     {
         id: "awp-graphite",
@@ -85,7 +87,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 182.7,
             factoryNew: 189.55,
         },
-        image: awpGraphiteImage,
+        image: getOperationBravoCaseImage("awp-graphite"),
     },
     {
         id: "p2000-ocean-foam",
@@ -101,7 +103,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 143.75,
             factoryNew: 147.59,
         },
-        image: p2000OceanFoamImage,
+        image: getOperationBravoCaseImage("p2000-ocean-foam"),
     },
     {
         id: "m4a4-zirka",
@@ -117,7 +119,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 67.39,
             factoryNew: 110.45,
         },
-        image: m4a4ZirkaImage,
+        image: getOperationBravoCaseImage("m4a4-zirka"),
     },
     {
         id: "mac-10-graven",
@@ -133,7 +135,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 62.11,
             factoryNew: 107.49,
         },
-        image: mac10GravenImage,
+        image: getOperationBravoCaseImage("mac-10-graven"),
     },
     {
         id: "usp-s-overgrowth",
@@ -149,7 +151,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 62.03,
             factoryNew: 101.76,
         },
-        image: uspsOvergrowthImage,
+        image: getOperationBravoCaseImage("usp-s-overgrowth"),
     },
     {
         id: "m4a1-s-bright-water",
@@ -165,7 +167,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 45.43,
             factoryNew: 50.17,
         },
-        image: m4a1sBrightWaterImage,
+        image: getOperationBravoCaseImage("m4a1-s-bright-water"),
     },
     {
         id: "galil-ar-shattered",
@@ -181,7 +183,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 27.09,
             factoryNew: 48.12,
         },
-        image: galilArShatteredImage,
+        image: getOperationBravoCaseImage("galil-ar-shattered"),
     },
     {
         id: "dual-berettas-black-limba",
@@ -197,7 +199,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 22.16,
             factoryNew: 38.65,
         },
-        image: dualBerettasBlackLimbaImage,
+        image: getOperationBravoCaseImage("dual-berettas-black-limba"),
     },
     {
         id: "g3sg1-demeter",
@@ -213,7 +215,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 17.57,
             factoryNew: 29.71,
         },
-        image: g3sg1DemeterImage,
+        image: getOperationBravoCaseImage("g3sg1-demeter"),
     },
     {
         id: "sg-553-wave-spray",
@@ -229,7 +231,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 17.37,
             factoryNew: 29.05,
         },
-        image: sg553WaveSprayImage,
+        image: getOperationBravoCaseImage("sg-553-wave-spray"),
     },
     {
         id: "ump-45-bone-pile",
@@ -245,7 +247,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 16.73,
             factoryNew: 26.92,
         },
-        image: ump45BonePileImage,
+        image: getOperationBravoCaseImage("ump-45-bone-pile"),
     },
     {
         id: "nova-tempest",
@@ -261,7 +263,7 @@ const operationBravoSkins: CaseSkin[] = [
             fieldTested: 12.15,
             factoryNew: 19.5,
         },
-        image: novaTempestImage,
+        image: getOperationBravoCaseImage("nova-tempest"),
     }
 ];
 
@@ -272,5 +274,5 @@ export const operationBravoCase: Case = {
     openPrice: 87.29,
     skins: operationBravoSkins,
     knives: classicKnives,
-    image: operationBravoCaseImage,
+    image: getOperationBravoCaseImage("operation-bravo-case"),
 };
