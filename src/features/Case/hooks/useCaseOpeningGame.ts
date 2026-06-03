@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { availableCases } from "@/data/cases";
 import type { Case, CaseItem } from "../types/case";
@@ -9,6 +9,76 @@ import { createPrizeDrop } from "../lib/wear";
 import { useGameStore } from "@/store/gameStore";
 import type { InventoryItem } from "@/features/Inventory/types/inventory";
 
+type OpeningState = {
+    hasRollStarted: boolean;
+    isOpening: boolean;
+    lastDrop: CaseItem | null;
+    prizeInventoryItem: InventoryItem | null;
+    rollItems: CaseItem[];
+    rollTargetIndex: number;
+};
+
+type OpeningAction =
+    | {
+        type: "startOpening";
+        rollItems: CaseItem[];
+    }
+    | {
+        type: "startRollAnimation";
+    }
+    | {
+        type: "finishOpening";
+        prizeInventoryItem: InventoryItem;
+        winner: CaseItem;
+    }
+    | {
+        type: "clearPrize";
+    };
+
+const initialOpeningState: OpeningState = {
+    hasRollStarted: false,
+    isOpening: false,
+    lastDrop: null,
+    prizeInventoryItem: null,
+    rollItems: [],
+    rollTargetIndex: 0,
+};
+
+function openingReducer(state: OpeningState, action: OpeningAction): OpeningState {
+    switch (action.type) {
+        case "startOpening":
+            return {
+                ...state,
+                hasRollStarted: false,
+                isOpening: true,
+                lastDrop: null,
+                prizeInventoryItem: null,
+                rollItems: action.rollItems,
+                rollTargetIndex: ROLL_TARGET_INDEX,
+            };
+
+        case "startRollAnimation":
+            return {
+                ...state,
+                hasRollStarted: true,
+            };
+
+        case "finishOpening":
+            return {
+                ...state,
+                isOpening: false,
+                lastDrop: action.winner,
+                prizeInventoryItem: action.prizeInventoryItem,
+            };
+
+        case "clearPrize":
+            return {
+                ...state,
+                prizeInventoryItem: null,
+            };
+    }
+}
+
 export default function useCaseOpeningGame() {
     const { caseId } = useParams();
     const navigate = useNavigate();
@@ -18,12 +88,8 @@ export default function useCaseOpeningGame() {
     const addBalance = useGameStore((state) => state.addBalance);
     const addInventoryItem = useGameStore((state) => state.addInventoryItem);
     const sellInventoryItem = useGameStore((state) => state.sellInventoryItem);
-    const [isOpening, setIsOpening] = useState(false);
-    const [lastDrop, setLastDrop] = useState<CaseItem | null>(null);
-    const [prizeInventoryItem, setPrizeInventoryItem] = useState<InventoryItem | null>(null);
-    const [rollItems, setRollItems] = useState<CaseItem[]>([]);
-    const [rollTargetIndex, setRollTargetIndex] = useState(0);
-    const [hasRollStarted, setHasRollStarted] = useState(false);
+    const [openingState, dispatchOpening] = useReducer(openingReducer, initialOpeningState);
+    const { hasRollStarted, isOpening, lastDrop, prizeInventoryItem, rollItems, rollTargetIndex } = openingState;
     const canOpenCase = useGameStore((state) => {
         return !isOpening && state.canAfford(selectedCase.openPrice);
     });
@@ -83,28 +149,32 @@ export default function useCaseOpeningGame() {
 
         clearScheduledRoll();
 
-        setLastDrop(null);
-        setPrizeInventoryItem(null);
-        setRollItems(nextRollItems);
-        setRollTargetIndex(ROLL_TARGET_INDEX);
-        setHasRollStarted(false);
-        setIsOpening(true);
+        dispatchOpening({
+            type: "startOpening",
+            rollItems: nextRollItems,
+        });
 
         firstFrameRef.current = window.requestAnimationFrame(() => {
             secondFrameRef.current = window.requestAnimationFrame(() => {
-                setHasRollStarted(true);
+                dispatchOpening({
+                    type: "startRollAnimation",
+                });
             });
         });
 
         finishTimeoutRef.current = window.setTimeout(() => {
-            setLastDrop(winner);
-            setPrizeInventoryItem(nextInventoryItem);
-            setIsOpening(false);
+            dispatchOpening({
+                prizeInventoryItem: nextInventoryItem,
+                type: "finishOpening",
+                winner,
+            });
         }, ROLL_DURATION_MS);
     }
 
     function clearPrizeDrop() {
-        setPrizeInventoryItem(null);
+        dispatchOpening({
+            type: "clearPrize",
+        });
     }
 
     function openCaseAgain() {
