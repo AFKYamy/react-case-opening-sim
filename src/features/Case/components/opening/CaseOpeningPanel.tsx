@@ -54,17 +54,19 @@ export default function CaseOpeningPanel({
                 />
             )}
 
-            <div className="flex flex-col items-center gap-3">
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                    <CaseSelectorControl
-                        availableCases={availableCases}
-                        isDisabled={isOpening}
-                        onSelectCase={onSelectCase}
-                        selectedCase={selectedCase}
-                    />
-
+            <div className="flex flex-col items-center gap-3 w-full">
+                <div className="grid w-full gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-center">
+                    <div className="justify-self-center sm:col-start-1 sm:row-start-1 sm:justify-self-start">
+                        <CaseSelectorControl
+                            availableCases={availableCases}
+                            isDisabled={isOpening}
+                            onSelectCase={onSelectCase}
+                            selectedCase={selectedCase}
+                        />
+                    </div>
+                    
                     <button
-                        className="rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
+                        className="justify-self-center rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 sm:col-start-2 sm:row-start-1"
                         disabled={!canOpenCase}
                         onClick={onOpenCase}
                         title={hasInsufficientBalance ? "Insufficient balance" : undefined}
@@ -74,7 +76,7 @@ export default function CaseOpeningPanel({
                     </button>
 
                     <button
-                        className="grid h-11 w-11 place-items-center rounded-full bg-surface-secondary text-sm font-bold text-text transition hover:brightness-110"
+                        className="grid h-11 w-11 place-items-center justify-self-center rounded-full bg-surface-secondary text-sm font-bold text-text transition hover:brightness-110 sm:col-start-3 sm:row-start-1 sm:ml-3 sm:justify-self-start"
                         onClick={() => setIsDropOddsOpen(true)}
                         title="Show drop odds"
                         type="button"

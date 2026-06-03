@@ -15,7 +15,7 @@ export default function CaseSelectorControl({
 }: CaseSelectorControlProps) {
     return (
         <label className="flex items-center gap-2 text-sm font-bold text-muted" htmlFor="case-selector-control">
-            Case
+            Case:
             <select
                 className="min-w-48 rounded-lg border border-surface-secondary bg-surface px-3 py-2 text-sm font-bold text-text outline-none transition focus:border-primary disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isDisabled}
