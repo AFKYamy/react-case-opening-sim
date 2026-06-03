@@ -1,4 +1,4 @@
-import { rarityColorClasses, type CaseItem } from "../types/case";
+import { rarityColorClasses, type CaseItem } from "../../types/case";
 
 type RollerItemCardProps = {
     item: CaseItem;

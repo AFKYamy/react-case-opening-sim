@@ -1,9 +1,10 @@
 import { useState } from "react";
 import CaseIdlePreview from "./CaseIdlePreview";
 import CaseRoller from "./CaseRoller";
-import DropOddsModal from "./DropOddsModal";
+import CaseSelectorControl from "../case-selector/CaseSelectorControl";
+import DropOddsModal from "../modals/DropOddsModal";
 import { formatCurrency } from "@/core/lib/formatCurrency";
-import type { Case, CaseItem } from "../types/case";
+import type { Case, CaseItem } from "../../types/case";
 
 type CaseOpeningPanelProps = {
     availableCases: Case[];
@@ -54,7 +55,14 @@ export default function CaseOpeningPanel({
             )}
 
             <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                    <CaseSelectorControl
+                        availableCases={availableCases}
+                        isDisabled={isOpening}
+                        onSelectCase={onSelectCase}
+                        selectedCase={selectedCase}
+                    />
+
                     <button
                         className="rounded-4xl bg-primary px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-60"
                         disabled={!canOpenCase}

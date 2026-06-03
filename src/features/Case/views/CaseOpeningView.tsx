@@ -1,6 +1,6 @@
-import CaseContent from '../components/CaseContent'
-import CaseOpeningPanel from '../components/CaseOpeningPanel'
-import PrizeModal from '../components/PrizeModal'
+import CaseContent from '../components/content/CaseContent'
+import CaseOpeningPanel from '../components/opening/CaseOpeningPanel'
+import PrizeModal from '../components/modals/PrizeModal'
 import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
 
 export default function CaseOpeningView() {

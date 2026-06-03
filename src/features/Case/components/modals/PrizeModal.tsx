@@ -1,6 +1,6 @@
-import { formatPrizeFloat, formatPrizePrice } from "../lib/formatPrize";
-import { rarityColorClasses } from "../types/case";
-import type { PrizeDrop } from "../types/prize";
+import { formatPrizeFloat, formatPrizePrice } from "../../lib/formatPrize";
+import { rarityColorClasses } from "../../types/case";
+import type { PrizeDrop } from "../../types/prize";
 
 type PrizeModalProps = {
     prizeDrop: PrizeDrop | null;

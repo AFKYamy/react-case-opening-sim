@@ -1,5 +1,5 @@
-import { dropRates, type DropRate } from "../lib/dropRates";
-import { rarityColorClasses } from "../types/case";
+import { dropRates, type DropRate } from "../../lib/dropRates";
+import { rarityColorClasses } from "../../types/case";
 
 type DropOddsModalProps = {
     isOpen: boolean;

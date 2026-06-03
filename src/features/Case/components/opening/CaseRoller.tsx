@@ -1,7 +1,7 @@
 import RollerItemCard from "./RollerItemCard";
-import { ROLL_DURATION_MS } from "../constants/roll";
-import useRollerLayout from "../hooks/useRollerLayout";
-import type { CaseItem } from "../types/case";
+import { ROLL_DURATION_MS } from "../../constants/roll";
+import useRollerLayout from "../../hooks/useRollerLayout";
+import type { CaseItem } from "../../types/case";
 
 type CaseRollerProps = {
     skins: CaseItem[];

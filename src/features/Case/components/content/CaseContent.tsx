@@ -1,5 +1,5 @@
 import SkinCard from './SkinCard'
-import type { CaseItem } from '../types/case';
+import type { CaseItem } from '../../types/case';
 
 type CaseContentProps = {
     skins: CaseItem[];
