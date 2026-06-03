@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useGameStore } from "@/store/gameStore";
+import { getInventoryStats } from "../lib/getInventoryStats";
 import { sortInventoryItems, type InventorySortMode } from "../lib/sortInventoryItems";
 import type { InventoryItem } from "../types/inventory";
 
@@ -10,6 +11,7 @@ export default function useInventory() {
     const [sortMode, setSortMode] = useState<InventorySortMode>("newest");
 
     const sortedInventoryItems = useMemo(() => sortInventoryItems(inventoryItems, sortMode), [inventoryItems, sortMode]);
+    const inventoryStats = useMemo(() => getInventoryStats(inventoryItems), [inventoryItems]);
 
     const cancelSale = () => {
         setItemPendingSale(null);
@@ -26,6 +28,7 @@ export default function useInventory() {
 
     return {
         values: {
+            inventoryStats,
             inventoryItems: sortedInventoryItems,
             itemPendingSale,
             sortMode,

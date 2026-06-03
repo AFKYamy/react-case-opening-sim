@@ -1,5 +1,6 @@
 import InventoryItemCard from "../components/InventoryItemCard";
 import InventorySortControl from "../components/InventorySortControl";
+import InventoryStats from "../components/InventoryStats";
 import SellInventoryItemModal from "../components/SellInventoryItemModal";
 import useInventory from "../hooks/useInventory";
 
@@ -8,6 +9,7 @@ const gridClassName = "grid w-full grid-cols-[repeat(auto-fill,14rem)] justify-b
 export default function InventoryView() {
     const {
         values: {
+            inventoryStats,
             inventoryItems,
             itemPendingSale,
             sortMode,
@@ -35,6 +37,8 @@ export default function InventoryView() {
                     sortMode={sortMode}
                 />
             </div>
+
+            <InventoryStats inventoryStats={inventoryStats} />
 
             {inventoryItems.length > 0 ? (
                 <div className={gridClassName}>
