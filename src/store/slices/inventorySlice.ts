@@ -6,7 +6,7 @@ import type { WalletSlice } from "./walletSlice";
 
 export type InventorySlice = {
     inventoryItems: InventoryItem[];
-    addInventoryItem: (prizeDrop: PrizeDrop) => void;
+    addInventoryItem: (prizeDrop: PrizeDrop) => InventoryItem;
     removeInventoryItem: (inventoryId: string) => void;
     sellInventoryItem: (inventoryId: string) => void;
 };
@@ -22,6 +22,8 @@ export const createInventorySlice: StateCreator<InventoryStore, [], [], Inventor
         set((state) => ({
             inventoryItems: [inventoryItem, ...state.inventoryItems],
         }));
+
+        return inventoryItem;
     },
 
     removeInventoryItem: (inventoryId) => {

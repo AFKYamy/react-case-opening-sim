@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { operationBravoCase } from "@/data/cases/operation-bravo-case";
 import type { CaseItem } from "../types/case";
-import type { PrizeDrop } from "../types/prize";
 import { ROLL_DURATION_MS, ROLL_TARGET_INDEX } from "../constants/roll";
 import { createRollItems } from "../lib/createRollItems";
 import { getRandomDrop } from "../lib/getRandomDrop";
 import { createPrizeDrop } from "../lib/wear";
 import { useGameStore } from "@/store/gameStore";
+import type { InventoryItem } from "@/features/Inventory/types/inventory";
 
 export default function useCaseOpeningGame() {
     const selectedCase = operationBravoCase;
     const spendBalance = useGameStore((state) => state.spendBalance);
     const addBalance = useGameStore((state) => state.addBalance);
     const addInventoryItem = useGameStore((state) => state.addInventoryItem);
+    const sellInventoryItem = useGameStore((state) => state.sellInventoryItem);
     const [isOpening, setIsOpening] = useState(false);
     const [lastDrop, setLastDrop] = useState<CaseItem | null>(null);
-    const [prizeDrop, setPrizeDrop] = useState<PrizeDrop | null>(null);
+    const [prizeInventoryItem, setPrizeInventoryItem] = useState<InventoryItem | null>(null);
     const [rollItems, setRollItems] = useState<CaseItem[]>([]);
     const [rollTargetIndex, setRollTargetIndex] = useState(0);
     const [hasRollStarted, setHasRollStarted] = useState(false);
@@ -61,6 +62,7 @@ export default function useCaseOpeningGame() {
 
         const nextRollItems = createRollItems(selectedCase, winner);
         const nextPrizeDrop = createPrizeDrop(winner);
+        const nextInventoryItem = addInventoryItem(nextPrizeDrop);
 
         if (finishTimeoutRef.current) {
             window.clearTimeout(finishTimeoutRef.current);
@@ -75,7 +77,7 @@ export default function useCaseOpeningGame() {
         }
 
         setLastDrop(null);
-        setPrizeDrop(null);
+        setPrizeInventoryItem(null);
         setRollItems(nextRollItems);
         setRollTargetIndex(ROLL_TARGET_INDEX);
         setHasRollStarted(false);
@@ -89,39 +91,34 @@ export default function useCaseOpeningGame() {
 
         finishTimeoutRef.current = window.setTimeout(() => {
             setLastDrop(winner);
-            setPrizeDrop(nextPrizeDrop);
+            setPrizeInventoryItem(nextInventoryItem);
             setIsOpening(false);
         }, ROLL_DURATION_MS);
     }
 
     function clearPrizeDrop() {
-        setPrizeDrop(null);
+        setPrizeInventoryItem(null);
     }
 
     function openCaseAgain() {
-        if (prizeDrop) {
-            addInventoryItem(prizeDrop);
-        }
-
         clearPrizeDrop();
         openCase();
     }
 
     function sellPrizeDrop() {
-        if (!prizeDrop) {
+        if (!prizeInventoryItem) {
             return;
         }
 
-        addBalance(prizeDrop.sellPrice);
+        sellInventoryItem(prizeInventoryItem.inventoryId);
         clearPrizeDrop();
     }
 
     function keepPrizeDrop() {
-        if (!prizeDrop) {
+        if (!prizeInventoryItem) {
             return;
         }
 
-        addInventoryItem(prizeDrop);
         clearPrizeDrop();
     }
 
@@ -130,7 +127,7 @@ export default function useCaseOpeningGame() {
             selectedCase,
             isOpening,
             lastDrop,
-            prizeDrop,
+            prizeDrop: prizeInventoryItem,
             canOpenCase,
             rollItems,
             rollTargetIndex,
