@@ -1,7 +1,9 @@
 import type { ItemRarity } from "@/features/Case/types/case";
 import type { InventoryItem } from "../types/inventory";
 
-export type InventorySortMode = "newest" | "rarity";
+export type InventorySortMode = "newest" | "rarity" | "price";
+
+export const inventorySortModes: InventorySortMode[] = ["newest", "rarity", "price"];
 
 const raritySortRank: Record<ItemRarity, number> = {
     "Rare Special Item": 5,
@@ -33,9 +35,32 @@ const sortByRarityAndPrice = (inventoryItems: InventoryItem[]) => {
         .map(({ inventoryItem }) => inventoryItem);
 };
 
+const sortByPrice = (inventoryItems: InventoryItem[]) => {
+    return inventoryItems
+        .map((inventoryItem, index) => ({ inventoryItem, index }))
+        .sort((left, right) => {
+            const priceDifference = right.inventoryItem.sellPrice - left.inventoryItem.sellPrice;
+
+            if (priceDifference !== 0) {
+                return priceDifference;
+            }
+
+            return left.index - right.index;
+        })
+        .map(({ inventoryItem }) => inventoryItem);
+};
+
+export const isInventorySortMode = (value: string): value is InventorySortMode => {
+    return inventorySortModes.includes(value as InventorySortMode);
+};
+
 export const sortInventoryItems = (inventoryItems: InventoryItem[], sortMode: InventorySortMode) => {
     if (sortMode === "rarity") {
         return sortByRarityAndPrice(inventoryItems);
+    }
+
+    if (sortMode === "price") {
+        return sortByPrice(inventoryItems);
     }
 
     return inventoryItems;

@@ -1,6 +1,7 @@
 import InventoryItemCard from "../components/InventoryItemCard";
 import SellInventoryItemModal from "../components/SellInventoryItemModal";
 import useInventory from "../hooks/useInventory";
+import { isInventorySortMode } from "../lib/sortInventoryItems";
 
 const gridClassName = "grid w-full grid-cols-[repeat(auto-fill,14rem)] justify-between gap-6 text-center";
 
@@ -34,11 +35,16 @@ export default function InventoryView() {
                     <select
                         className="min-w-48 rounded-lg border border-surface-secondary bg-surface px-3 py-2 text-sm font-bold text-text outline-none transition focus:border-primary"
                         id="inventory-sort-select"
-                        onChange={(event) => setSortMode(event.target.value === "rarity" ? "rarity" : "newest")}
+                        onChange={(event) => {
+                            if (isInventorySortMode(event.target.value)) {
+                                setSortMode(event.target.value);
+                            }
+                        }}
                         value={sortMode}
                     >
                         <option value="newest">Newest first</option>
                         <option value="rarity">Rarity</option>
+                        <option value="price">Price</option>
                     </select>
                 </label>
             </div>
