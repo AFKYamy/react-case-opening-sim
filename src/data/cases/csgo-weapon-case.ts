@@ -26,16 +26,6 @@ const getCsgoWeaponCaseImage = (id: string) => csgoWeaponCaseImagesById[id] ?? "
 
 const csgoWeaponCaseSkins: CaseSkin[] = [
     {
-        id: "ak-47-case-hardened",
-        skin: "Case Hardened",
-        weapon: "AK-47",
-        category: "skin",
-        sources: csgoWeaponCaseSkinSources,
-        rarity: "Classified",
-        prices: createWearPrices(192.66, 714.25),
-        image: getCsgoWeaponCaseImage("ak-47-case-hardened"),
-    },
-    {
         id: "awp-lightning-strike",
         skin: "Lightning Strike",
         weapon: "AWP",
@@ -44,6 +34,16 @@ const csgoWeaponCaseSkins: CaseSkin[] = [
         rarity: "Covert",
         prices: createWearPrices(570.13, 612.72),
         image: getCsgoWeaponCaseImage("awp-lightning-strike"),
+    },
+    {
+        id: "ak-47-case-hardened",
+        skin: "Case Hardened",
+        weapon: "AK-47",
+        category: "skin",
+        sources: csgoWeaponCaseSkinSources,
+        rarity: "Classified",
+        prices: createWearPrices(192.66, 714.25),
+        image: getCsgoWeaponCaseImage("ak-47-case-hardened"),
     },
     {
         id: "desert-eagle-hypnotic",

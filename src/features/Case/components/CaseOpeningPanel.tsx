@@ -6,6 +6,7 @@ import { formatCurrency } from "@/core/lib/formatCurrency";
 import type { Case, CaseItem } from "../types/case";
 
 type CaseOpeningPanelProps = {
+    availableCases: Case[];
     selectedCase: Case;
     isOpening: boolean;
     lastDrop: CaseItem | null;
@@ -14,9 +15,11 @@ type CaseOpeningPanelProps = {
     hasRollStarted: boolean;
     canOpenCase: boolean;
     onOpenCase: () => void;
+    onSelectCase: (selectedCase: Case) => void;
 };
 
 export default function CaseOpeningPanel({
+    availableCases,
     selectedCase,
     isOpening,
     lastDrop,
@@ -25,6 +28,7 @@ export default function CaseOpeningPanel({
     hasRollStarted,
     canOpenCase,
     onOpenCase,
+    onSelectCase,
 }: CaseOpeningPanelProps) {
     const [isDropOddsOpen, setIsDropOddsOpen] = useState(false);
     const hasOpenedCase = rollItems.length > 0;
@@ -42,7 +46,11 @@ export default function CaseOpeningPanel({
                     lastDrop={lastDrop}
                 />
             ) : (
-                <CaseIdlePreview selectedCase={selectedCase} />
+                <CaseIdlePreview
+                    availableCases={availableCases}
+                    selectedCase={selectedCase}
+                    onSelectCase={onSelectCase}
+                />
             )}
 
             <div className="flex flex-col items-center gap-3">

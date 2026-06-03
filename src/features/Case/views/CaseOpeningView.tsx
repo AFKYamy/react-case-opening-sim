@@ -6,6 +6,7 @@ import useCaseOpeningGame from '../hooks/useCaseOpeningGame'
 export default function CaseOpeningView() {
     const {
         values: {
+            availableCases,
             selectedCase,
             isOpening,
             lastDrop,
@@ -19,6 +20,7 @@ export default function CaseOpeningView() {
             keepPrizeDrop,
             openCase,
             openCaseAgain,
+            selectCase,
             sellPrizeDrop,
         },
     } = useCaseOpeningGame();
@@ -31,6 +33,7 @@ export default function CaseOpeningView() {
             </section>
 
             <CaseOpeningPanel
+                availableCases={availableCases}
                 selectedCase={selectedCase}
                 isOpening={isOpening}
                 lastDrop={lastDrop}
@@ -39,13 +42,10 @@ export default function CaseOpeningView() {
                 hasRollStarted={hasRollStarted}
                 canOpenCase={canOpenCase}
                 onOpenCase={openCase}
+                onSelectCase={selectCase}
             />
 
             <CaseContent skins={selectedCase.skins} knives={selectedCase.knives} />
-
-            <section>
-                {/* Button opens Modal that will show odds */}
-            </section>
 
             <PrizeModal
                 prizeDrop={prizeDrop}
