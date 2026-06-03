@@ -9,9 +9,11 @@ export default function InventoryView() {
         values: {
             inventoryItems,
             itemPendingSale,
+            sortMode,
         },
         setters: {
             setItemPendingSale,
+            setSortMode,
         },
         actions: {
             cancelSale,
@@ -21,9 +23,24 @@ export default function InventoryView() {
 
     return (
         <section className="container mx-auto flex flex-col gap-8 px-4 py-10">
-            <div>
-                <h1 className="text-3xl font-bold">Inventory</h1>
-                <p className="text-muted">All skins you own.</p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold">Inventory</h1>
+                    <p className="text-muted">All skins you own.</p>
+                </div>
+
+                <label className="flex items-center gap-2 text-sm font-bold text-muted" htmlFor="inventory-sort-select">
+                    Sort by:
+                    <select
+                        className="min-w-48 rounded-lg border border-surface-secondary bg-surface px-3 py-2 text-sm font-bold text-text outline-none transition focus:border-primary"
+                        id="inventory-sort-select"
+                        onChange={(event) => setSortMode(event.target.value === "rarity" ? "rarity" : "newest")}
+                        value={sortMode}
+                    >
+                        <option value="newest">Newest first</option>
+                        <option value="rarity">Rarity</option>
+                    </select>
+                </label>
             </div>
 
             {inventoryItems.length > 0 ? (
