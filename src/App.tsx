@@ -1,19 +1,21 @@
-import { useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './core/css/App.css'
 import AppHeader from './core/components/header/AppHeader'
-import type { AppView } from './core/types/navigation'
 import CaseOpeningView from './features/Case/views/CaseOpeningView'
 import InventoryView from './features/Inventory/views/InventoryView'
 
 function App() {
-    const [activeView, setActiveView] = useState<AppView>("case");
-
     return (
         <div className="min-h-screen bg-bg text-text">
-            <AppHeader activeView={activeView} onNavigate={setActiveView} />
+            <AppHeader />
 
             <main>
-                {activeView === "case" ? <CaseOpeningView /> : <InventoryView />}
+                <Routes>
+                    <Route path="/" element={<Navigate replace to="/case" />} />
+                    <Route path="/case" element={<CaseOpeningView />} />
+                    <Route path="/inventory" element={<InventoryView />} />
+                    <Route path="*" element={<Navigate replace to="/case" />} />
+                </Routes>
             </main>
         </div>
     )
