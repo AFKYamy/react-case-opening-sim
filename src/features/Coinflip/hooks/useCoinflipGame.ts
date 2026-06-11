@@ -47,7 +47,7 @@ export default function useCoinflipGame() {
     };
 
     const flipCoin = () => {
-        if (parsedBetAmount === null || parsedBetAmount <= 0 || !spendBalance(parsedBetAmount)) {
+        if (isFlipping || parsedBetAmount === null || parsedBetAmount <= 0 || !spendBalance(parsedBetAmount)) {
             return;
         }
 
