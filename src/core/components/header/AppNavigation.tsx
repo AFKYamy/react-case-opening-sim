@@ -3,6 +3,7 @@ import type { NavItem } from "@/core/types/navigation";
 
 const navItems: NavItem[] = [
     { label: "Case", path: "/case", view: "case" },
+    { label: "Coinflip", path: "/coinflip", view: "coinflip" },
     { label: "Inventory", path: "/inventory", view: "inventory" },
 ];
 

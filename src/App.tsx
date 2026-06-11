@@ -3,6 +3,7 @@ import './core/css/App.css'
 import AppHeader from './core/components/header/AppHeader'
 import { availableCases } from './data/cases'
 import CaseOpeningView from './features/Case/views/CaseOpeningView'
+import CoinflipView from './features/Coinflip/views/CoinflipView'
 import InventoryView from './features/Inventory/views/InventoryView'
 
 const defaultCasePath = `/case/${availableCases[0].id}`;
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/" element={<Navigate replace to={defaultCasePath} />} />
                     <Route path="/case" element={<Navigate replace to={defaultCasePath} />} />
                     <Route path="/case/:caseId" element={<CaseOpeningRoute />} />
+                    <Route path="/coinflip" element={<CoinflipView />} />
                     <Route path="/inventory" element={<InventoryView />} />
                     <Route path="*" element={<Navigate replace to={defaultCasePath} />} />
                 </Routes>

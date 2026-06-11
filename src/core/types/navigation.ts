@@ -1,4 +1,4 @@
-export type AppView = "case" | "inventory";
+export type AppView = "case" | "coinflip" | "inventory";
 
 export type NavItem = {
     label: string;
